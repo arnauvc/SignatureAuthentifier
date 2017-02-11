@@ -5,7 +5,7 @@
 using namespace std;
 
 int main(){
-	cout <<"topology: 2 4 1" << endl;
+	cout <<"topology: 2 4 4 1" << endl;
 	for (int i = 3000; i >= 0; --i){
 		int n1 = (int)(2.0 * rand() / double(RAND_MAX));
 		int n2 = (int)(2.0 * rand() / double(RAND_MAX));

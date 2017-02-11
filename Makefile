@@ -18,7 +18,7 @@ program.exe: program.o Neuron.o Net.o TrainingData.o
 	g++ -o  program.exe program.o Neuron.o Net.o TrainingData.o
 	
 makeTrainingSamples.cc: #makeTrainingSamples.cc
-	g++ $(OPCIONS) -o makeTrainingSamples.exe makeTrainingSamples.cc 
+	g++ -o makeTrainingSamples.exe makeTrainingSamples.cc 
 
 clean:
 	rm *.o
