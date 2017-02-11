@@ -2,9 +2,9 @@ from PIL import Image
 import PIL
 import os
 cnt = 1
-for filename in os.listdir('./'):
+for filename in os.listdir('./sampleimages/'):
   if filename.endswith('.png') or filename.endswith('.jpg'):
-    img = Image.open(filename).convert('LA')
+    img = Image.open('sampleimages/' + filename).convert('LA')
     inf = 256.0
     sup = -1.0
     for pixel in iter(img.getdata()):
@@ -19,7 +19,7 @@ for filename in os.listdir('./'):
     for x in xrange(0, width - 1):
 	for y in xrange(0, height  - 1):
 	    tmp = pix[x, y][0];
-	    pix[x, y] = (255 * (tmp - inf) / (sup - inf),) + pix[x, y][1:1]
+	    pix[x, y] = (min(255, 435 * (tmp - inf) / (sup - inf)),) + pix[x, y][1:1]
     top = 0 #tancat-tancat
     down = height - 1
     left = 0
@@ -67,9 +67,9 @@ for filename in os.listdir('./'):
     img = img.crop((left, top, right, down))
     img = img.resize((50, 20), PIL.Image.ANTIALIAS)
     #img.save(str(cnt) + 'cropped.png')
-    f=open('./input' + str(cnt) + '.txt', 'w')
+    f=open('./sampletext/input' + str(cnt) + '.txt', 'w')
     for pixel in iter(img.getdata()):
-	f.write(str(pixel[0]) + ' '),
+	f.write(str(1.0 - (pixel[0] + 0.0) / 255.0) + ' '),
     f.close()
     cnt = cnt + 1
   else:
