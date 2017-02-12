@@ -1,6 +1,6 @@
 OPCIONS = -D_GLIBCXX_DEBUG -O2 -Wall -Wextra -Werror -Wno-uninitialized -Wno-sign-compare -std=c++0x
 
-all: Neuron.o Net.o TrainingData.o  program.o program.exe makeTrainingSamples.cc clean
+all: Neuron.o Net.o TrainingData.o  program.o program.exe makeTrainingSamples  TrainingData executar_program clean
 	
 Neuron.o: Neuron.cc Neuron.hh
 	g++ -c $(OPCIONS) Neuron.cc 
@@ -17,8 +17,13 @@ program.o: program.cc
 program.exe: program.o Neuron.o Net.o TrainingData.o
 	g++ -o  program.exe program.o Neuron.o Net.o TrainingData.o
 	
-makeTrainingSamples.cc: #makeTrainingSamples.cc
+makeTrainingSamples: makeTrainingSamples.cc
 	g++ -o makeTrainingSamples.exe makeTrainingSamples.cc 
+
+TrainingData: makeTrainingSamples.exe
+	./makeTrainingSamples.exe > TrainingData.txt 
+executar_program: program.exe
+	./program.exe
 
 clean:
 	rm *.o

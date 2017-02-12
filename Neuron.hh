@@ -18,8 +18,8 @@ class Neuron{
         
         typedef vector<Neuron> Layer;
         
-        double eta = 0.10;   // [0.0..1.0] overall net training rate
-        double alpha = 0.5; // [0.0..n] multiplier of last weight change (momentum)
+        double eta = 0.20;   // [0.0..1.0] overall net training rate
+        double alpha = 0.50; // [0.0..n] multiplier of last weight change (momentum)
         
         double numneurones;
 

@@ -10,29 +10,34 @@
 using namespace std;
 
 int main(){
-	cout <<"topology: 1000  200 1" << endl;
+	cout <<"topology: 1000  400 50 1" << endl;
 	vector< vector<double> > dataset;
-	int numimatges = 3918;	
+	int numimatges = 26;	
 	for(int i = 0; i < numimatges; ++i){
 		dataset.push_back(vector<double> ());
 		 ifstream m_trainingDataFile;
-		string filename  = "./datatext/input"+to_string(i)+".txt";
-		m_trainingDataFile.open(filename.c_str());
-		 string line;
-    		getline(m_trainingDataFile, line);
-    		stringstream ss(line);
-    		double label;
-        		while (ss >> label) {
-              			dataset[i].push_back(label);
-       		 }
-       		dataset[i].push_back(0.0);
+		string filename  = "./no/input"+to_string(i)+".txt";
+			m_trainingDataFile.open(filename.c_str());
+			 string line;
+	    		getline(m_trainingDataFile, line);
+	    		stringstream ss(line);
+	    		double label;
+	        		while (ss >> label) {
+	              			dataset.back().push_back(label);
+	       		 }
+	       		dataset.back().push_back(-1.0);
+	       		
+	       		for(int f = 0; f < 50; ++f){
+	       			dataset.push_back(dataset.back());
+	       		}
+	       		
     	}
-    	int numimatgesbones = 7;
+    	int numimatgesbones = 26;
 
     	for(int i = 0; i < numimatgesbones; ++i){
 		dataset.push_back(vector<double> ());
 		 ifstream m_trainingDataFile;
-		string filename  = "./datatext_personal/input"+to_string(i)+".txt";
+		string filename  = "./si/input"+to_string(i)+".txt";
 			m_trainingDataFile.open(filename.c_str());
 			 string line;
 	    		getline(m_trainingDataFile, line);
@@ -42,9 +47,11 @@ int main(){
 	              			dataset.back().push_back(label);
 	       		 }
 	       		dataset.back().push_back(1.0);
-	       		for(int f = 0; f < 475; ++f){
+	       		
+	       		for(int f = 0; f < 50; ++f){
 	       			dataset.push_back(dataset.back());
 	       		}
+	       		
     	}
 
     	random_shuffle( dataset.begin(),dataset.end() );

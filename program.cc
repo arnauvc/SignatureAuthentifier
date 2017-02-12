@@ -65,7 +65,8 @@ int main()
 
     cout << "Write path of new picture file" << endl;
     string newpath;
-    while(cin >> newpath){
+   for(int i = 0; i < 11; ++i){
+        string newpath  = "./testsi/input"+to_string(i)+".txt";
         vector<double> inputValues;
         ifstream m_trainingDataFile;
         
@@ -79,7 +80,60 @@ int main()
         }
         myNet.feedForward(inputValues);
         myNet.getResults(resultVals);
-        showVectorVals("Outputs:", resultVals);
+        showVectorVals("Outputs from TRUE:", resultVals);
     }
-
+     for(int i = 0; i < 3; ++i){
+        string newpath  = "./testno/input"+to_string(i)+".txt";
+        vector<double> inputValues;
+        ifstream m_trainingDataFile;
+        
+        m_trainingDataFile.open(newpath.c_str());
+        string line;
+        getline(m_trainingDataFile, line);
+        stringstream ss(line);
+        double valor;
+        while (ss >> valor) {
+            inputValues.push_back(valor);
+        }
+        myNet.feedForward(inputValues);
+        myNet.getResults(resultVals);
+        showVectorVals("Outputs from FALSE:", resultVals);
+    }
+    
+     for(int i = 0; i < 10; ++i){
+        string newpath  = "./testimitar/input"+to_string(i)+".txt";
+        vector<double> inputValues;
+        ifstream m_trainingDataFile;
+        
+        m_trainingDataFile.open(newpath.c_str());
+        string line;
+        getline(m_trainingDataFile, line);
+        stringstream ss(line);
+        double valor;
+        while (ss >> valor) {
+            inputValues.push_back(valor);
+        }
+        myNet.feedForward(inputValues);
+        myNet.getResults(resultVals);
+        showVectorVals("Outputs from FORGE ", resultVals);
+    }
+    
+      for(int i = 0; i < 5; ++i){
+        string newpath  = "./testrandom/input"+to_string(i)+".txt";
+        vector<double> inputValues;
+        ifstream m_trainingDataFile;
+        
+        m_trainingDataFile.open(newpath.c_str());
+        string line;
+        getline(m_trainingDataFile, line);
+        stringstream ss(line);
+        double valor;
+        while (ss >> valor) {
+            inputValues.push_back(valor);
+        }
+        myNet.feedForward(inputValues);
+        myNet.getResults(resultVals);
+        showVectorVals("Outputs from RANDOM: ", resultVals);
+    }
+    
 }
