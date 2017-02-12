@@ -1,7 +1,3 @@
-// neural-net-tutorial.cpp
-// David Miller, http://millermattson.com/dave
-// See the associated video for instructions: http://vimeo.com/19569529
-
 
 #include <vector>
 #include <iostream>
@@ -47,7 +43,7 @@ int main()
         if (trainData.getNextInputs(inputVals) != topology[0]) {
             break;
         }
-        showVectorVals(": Inputs:", inputVals);
+        //showVectorVals(": Inputs:", inputVals);
         myNet.feedForward(inputVals);
 
         // Collect the net's actual output results:
@@ -65,5 +61,25 @@ int main()
         cout << "Net recent average error: " << myNet.getRecentAverageError() << endl;
     }
 
-    cout << endl << "Done" << endl;
+    cout << endl << " Training Done" << endl;
+
+    cout << "Write path of new picture file" << endl;
+    string newpath;
+    while(cin >> newpath){
+        vector<double> inputValues;
+        ifstream m_trainingDataFile;
+        
+        m_trainingDataFile.open(newpath.c_str());
+        string line;
+        getline(m_trainingDataFile, line);
+        stringstream ss(line);
+        double valor;
+        while (ss >> valor) {
+            inputValues.push_back(valor);
+        }
+        myNet.feedForward(inputValues);
+        myNet.getResults(resultVals);
+        showVectorVals("Outputs:", resultVals);
+    }
+
 }

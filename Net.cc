@@ -18,7 +18,8 @@ Net::Net(const vector<unsigned> &topology)
         // We have a new layer, now fill it with neurons, and
         // add a bias neuron in each layer.
         for (unsigned neuronNum = 0; neuronNum <= topology[layerNum]; ++neuronNum) {
-            m_layers.back().push_back(Neuron(numOutputs, neuronNum));
+
+            m_layers.back().push_back(Neuron(numOutputs, neuronNum, topology[layerNum] )    );
             cout << "Made a Neuron!" << endl;
         }
 

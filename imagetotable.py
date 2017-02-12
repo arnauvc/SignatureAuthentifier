@@ -10,4 +10,4 @@ for pixel in iter(img.getdata()):
 for pixel in iter(img.getdata()):
     tmp = 0.0 + pixel[0]
     tmp = 256 * (tmp - inf) / (sup - inf)
-    print(tmp)
+    print(tmp),

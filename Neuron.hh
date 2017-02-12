@@ -18,9 +18,11 @@ class Neuron{
         
         typedef vector<Neuron> Layer;
         
-        double eta = 0.15;   // [0.0..1.0] overall net training rate
+        double eta = 0.10;   // [0.0..1.0] overall net training rate
         double alpha = 0.5; // [0.0..n] multiplier of last weight change (momentum)
         
+        double numneurones;
+
         static double transferFunction(double x);
         static double transferFunctionDerivative(double x);
         double randomWeight();
@@ -35,9 +37,11 @@ class Neuron{
 
         Neuron();
 
-        Neuron(unsigned numOutputs, unsigned myIndex);
+        Neuron(unsigned numOutputs, unsigned myIndex, unsigned numneurones);
 
         ~Neuron();
+
+
 
         void setOutputVal(double val);
 

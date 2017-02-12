@@ -4,10 +4,11 @@
 Neuron::Neuron(){
 }
 
-Neuron::Neuron(unsigned numOutputs, unsigned myIndex){
-    eta = 0.15;    // overall net learning rate, [0.0..1.0]
+Neuron::Neuron(unsigned numOutputs, unsigned myIndex, unsigned numNeurones){
+    eta = 0.10;    // overall net learning rate, [0.0..1.0]
     alpha = 0.5;   // momentum, multiplier of last deltaWeight, [0.0..1.0]
-
+    numneurones = numNeurones;
+    cout << numneurones << endl;
     for (unsigned c = 0; c < numOutputs; ++c) {
         m_outputWeights.push_back(Connection());
         m_outputWeights.back().weight = randomWeight();
@@ -18,7 +19,9 @@ Neuron::Neuron(unsigned numOutputs, unsigned myIndex){
 Neuron::~Neuron(){}
 
 double Neuron::randomWeight() { 
-    return rand() / double(RAND_MAX);
+    //return (rand() / double(RAND_MAX));
+
+  return ((rand() / double(RAND_MAX))/ numneurones)/3.0;
     
 }
 
